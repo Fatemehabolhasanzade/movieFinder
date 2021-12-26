@@ -12,7 +12,8 @@ export default function MovieList(props) {
                         width: 240,
                         height: 360
                     }} />
-                    <div className='overly d-flex align-item-center justify-content-center'>
+                    <div className='overly d-flex align-item-center justify-content-center'
+                        onClick={() => props.handelFavorateClick(movie)}>
                         <FavorateComponents />
                     </div>
                 </div>

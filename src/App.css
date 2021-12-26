@@ -15,17 +15,20 @@ body {
   color: hsl(0, 0%, 100%) !important;
 }
 .container {
+  width: 90vw;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   align-content: space-around;
   align-items: center;
-  justify-content: space-around;
 }
-.head {
+.head,
+.favorates {
+  width: 95vw;
   display: flex !important;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: 2em 1em;
 }
