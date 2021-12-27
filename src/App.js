@@ -31,6 +31,18 @@ function App() {
       .then(d => setMovies(d.data))
   }, [page, searchValue, url])
 
+  const moreMovies = (page, movies) => {
+    let newList = movies;
+    console.log(movies);
+    setPage(page + 1);
+    setTimeout(() => {
+      console.log(movies);
+      setMovies([...newList, movies])
+      console.log(movies);
+    }, 1000);
+
+
+  }
   useEffect(() => {
     if (favorates) {
       const movieFavorates = JSON.parse(
@@ -39,6 +51,7 @@ function App() {
       setFavorates(movieFavorates)
     }
   }, [])
+
 
   const saveFavorateMovie = (items) => {
     localStorage.setItem('react-movie-app-favorates', JSON.stringify(items));
@@ -56,7 +69,6 @@ function App() {
     setFavorates(newFavorateList);
     saveFavorateMovie(newFavorateList);
   })
-  console.log(favorates);
 
   return (
     <div className='movie-app'>
@@ -69,9 +81,9 @@ function App() {
           handelFavorateClick={addFavorateMovie} />
       </div>
       <div className='pages'>
-        <span onClick={() => page > 1 && setPage(page - 1)}>previous</span>
-        <span >{page}</span>
-        <span onClick={() => setPage(page + 1)}>next</span>
+        {/* <span onClick={() => page > 1 && setPage(page - 1)}>previous</span> */}
+        {/* <span >{page}</span> */}
+        <span onClick={moreMovies}> show more</span>
         <br />
         <br />
       </div>
