@@ -18,7 +18,7 @@ body {
   width: 90vw;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   overflow-x: auto;
   align-content: space-around;
   align-items: center;

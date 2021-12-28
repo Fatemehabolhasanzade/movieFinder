@@ -6,6 +6,7 @@ import MovieListHeading from './Components/MovieListHeading';
 import SearchBox from './Components/SearchBox';
 import AddFavorate from './Components/AddFavorate';
 import RemoveComponent from './Components/RemoveComponent';
+import MoreMovies from './Components/MoreMovies';
 
 
 function App() {
@@ -13,36 +14,21 @@ function App() {
   const [page, setPage] = useState(1);
   const [searchValue, setSearchValue] = useState("")
   const [favorates, setFavorates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   const url = `https://moviesapi.ir/api/v1/movies?q=${searchValue}&page=${page}`;
 
-
-  // const getMovieRequest = async () => {
-  //   const response = await fetch(url);
-  //   const responseJson = await response.json();
-  //   console.log(responseJson);
-  // }
-  // useEffect(() => {
-  //   getMovieRequest()
-  // }, [])
-
   useEffect(() => {
+    console.log(page);
+    setIsLoading(true)
     fetch(url)
       .then(response => response.json())
-      .then(d => setMovies(d.data))
+      .then(d => {
+        setMovies(d.data)
+        setIsLoading(false)
+        console.log(movies)
+      })
   }, [page, searchValue, url])
 
-  const moreMovies = (page, movies) => {
-    let newList = movies;
-    console.log(movies);
-    setPage(page + 1);
-    setTimeout(() => {
-      console.log(movies);
-      setMovies([...newList, movies])
-      console.log(movies);
-    }, 1000);
-
-
-  }
   useEffect(() => {
     if (favorates) {
       const movieFavorates = JSON.parse(
@@ -77,13 +63,14 @@ function App() {
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
       <div className='container'>
+        {isLoading && <div>Loading...</div>}
         <MovieList movies={movies} favorateComponents={AddFavorate}
           handelFavorateClick={addFavorateMovie} />
       </div>
       <div className='pages'>
-        {/* <span onClick={() => page > 1 && setPage(page - 1)}>previous</span> */}
-        {/* <span >{page}</span> */}
-        <span onClick={moreMovies}> show more</span>
+        <span onClick={() => page > 1 && setPage(page - 1)}>previous</span>
+        <span >{page}</span>
+        <span onClick={() => setPage(page + 1)}> next</span>
         <br />
         <br />
       </div>
