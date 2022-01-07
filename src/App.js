@@ -6,7 +6,6 @@ import MovieListHeading from './Components/MovieListHeading';
 import SearchBox from './Components/SearchBox';
 import AddFavorate from './Components/AddFavorate';
 import RemoveComponent from './Components/RemoveComponent';
-import MoreMovies from './Components/MoreMovies';
 
 
 function App() {
