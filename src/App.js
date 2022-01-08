@@ -24,9 +24,8 @@ function App() {
       .then(d => {
         setMovies(d.data)
         setIsLoading(false)
-        console.log(movies)
       })
-  }, [page, searchValue, url])
+  }, [page, searchValue])
 
   useEffect(() => {
     if (favorates) {
@@ -63,8 +62,8 @@ function App() {
       </div>
       <div className='container'>
         {isLoading && <div>Loading...</div>}
-        <MovieList movies={movies} favorateComponents={AddFavorate}
-          handelFavorateClick={addFavorateMovie} />
+        {!isLoading && <MovieList movies={movies} favorateComponents={AddFavorate}
+          handelFavorateClick={addFavorateMovie} />}
       </div>
       <div className='pages'>
         <span onClick={() => page > 1 && setPage(page - 1)}>previous</span>

@@ -1,5 +1,4 @@
 import React from 'react'
-import AddFavorate from './AddFavorate'
 
 export default function MovieList(props) {
     const FavorateComponents = props.favorateComponents
